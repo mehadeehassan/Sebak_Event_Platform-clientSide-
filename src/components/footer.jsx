@@ -1,13 +1,7 @@
-import { Facebook, Github, Mail, MapPin, Youtube } from "lucide-react";
-
-/* The new X logo (post rebrand), not the old bird. */
-function XLogo(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
+import Link from "next/link";
+import { Mail, MapPin } from "lucide-react";
+import { FacebookIcon, GithubIcon, XIcon, YoutubeIcon } from "@/components/brand-icons";
+import CurrentYear from "@/components/current-year";
 
 const exploreLinks = [
   { href: "/", label: "Home" },
@@ -27,15 +21,13 @@ const categoryLinks = [
 ];
 
 const socialLinks = [
-  { label: "Follow Sebak on X", href: "https://x.com/", icon: XLogo },
-  { label: "Sebak on Facebook", href: "https://facebook.com/", icon: Facebook },
-  { label: "Sebak on YouTube", href: "https://youtube.com/", icon: Youtube },
-  { label: "Sebak on GitHub", href: "https://github.com/", icon: Github },
+  { label: "Follow Sebak on X", href: "https://x.com/", icon: XIcon },
+  { label: "Sebak on Facebook", href: "https://facebook.com/", icon: FacebookIcon },
+  { label: "Sebak on YouTube", href: "https://youtube.com/", icon: YoutubeIcon },
+  { label: "Sebak on GitHub", href: "https://github.com/", icon: GithubIcon },
 ];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="bg-teal-950 text-teal-50 dark:bg-[oklch(0.16_0.02_195)]">
       <div className="container-wide grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
@@ -117,7 +109,7 @@ export default function Footer() {
 
       <div className="border-t border-teal-100/10">
         <p className="container-wide py-4 text-center text-xs text-teal-100/60">
-          © {year} Sebak — a community service platform. Built together, served together.
+          © <CurrentYear /> Sebak — a community service platform. Built together, served together.
         </p>
       </div>
     </footer>

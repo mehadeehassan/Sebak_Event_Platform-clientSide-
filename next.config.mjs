@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  /* Static shell + client rendering fits this project better; the strict
+     prerender rules of the cache components mode were too heavy here. */
+  cacheComponents: false,
   reactCompiler: true,
   turbopack: {
     rules: {
