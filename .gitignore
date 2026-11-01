@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# agent-facing instructions file (created by next dev - not needed in the repo)
+AGENTS.md
