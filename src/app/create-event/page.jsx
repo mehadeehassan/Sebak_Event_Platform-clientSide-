@@ -8,6 +8,7 @@ import { CalendarPlus } from "lucide-react";
 import EventForm from "@/components/event-form";
 import { useRequireAuth } from "@/lib/use-require-auth";
 import { api } from "@/lib/api";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 /* Private page: any logged-in user can publish an event for the community. */
@@ -60,9 +61,16 @@ export default function CreateEventPage() {
           </CardHeader>
           <CardContent>
             {loading || !user ? (
-              <p className="text-muted-foreground py-10 text-center text-sm">
-                Checking your session...
-              </p>
+              <div className="space-y-4 py-4">
+                <Skeleton className="h-9 w-full" />
+                <Skeleton className="h-20 w-full" />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Skeleton className="h-9 w-full" />
+                  <Skeleton className="h-9 w-full" />
+                </div>
+                <Skeleton className="h-9 w-full" />
+                <Skeleton className="h-9 w-full" />
+              </div>
             ) : (
               <EventForm mode="create" submitting={submitting} onSubmit={handleCreate} />
             )}

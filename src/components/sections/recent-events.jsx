@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { CalendarSearch } from "lucide-react";
 import SectionHeading from "@/components/section-heading";
 import EventCard from "@/components/event-card";
+import { EventGridSkeleton } from "@/components/skeletons";
 import { Button } from "@/components/ui/button";
 import { api } from "@/lib/api";
 import { startOfToday } from "@/lib/validate";
@@ -51,7 +52,7 @@ export default function RecentEvents() {
         />
 
         {loading ? (
-          <p className="text-muted-foreground py-10 text-center text-sm">Loading events...</p>
+          <EventGridSkeleton count={6} />
         ) : failed ? (
           <p className="text-muted-foreground py-10 text-center text-sm">
             Events could not be loaded right now — please try again later.

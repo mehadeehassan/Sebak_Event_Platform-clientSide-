@@ -13,6 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import EventPageHeader from "@/components/event-page-header";
+import { ManageRowSkeleton } from "@/components/skeletons";
 import EventForm from "@/components/event-form";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -116,7 +117,7 @@ export default function ManageEventsPage() {
       />
 
       {dataLoading ? (
-        <p className="text-muted-foreground py-16 text-center text-sm">Loading your events...</p>
+        <ManageRowSkeleton count={3} />
       ) : failed ? (
         <div className="mx-auto max-w-md py-16 text-center">
           <p className="text-muted-foreground">Something went wrong while loading your events.</p>

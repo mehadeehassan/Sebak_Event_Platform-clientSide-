@@ -5,6 +5,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { CalendarDays, CalendarCheck, MapPin } from "lucide-react";
 import EventPageHeader from "@/components/event-page-header";
+import { JoinedRowSkeleton } from "@/components/skeletons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useRequireAuth } from "@/lib/use-require-auth";
@@ -63,7 +64,7 @@ export default function JoinedEventsPage() {
       />
 
       {dataLoading ? (
-        <p className="text-muted-foreground py-16 text-center text-sm">Loading your events...</p>
+        <JoinedRowSkeleton count={4} />
       ) : failed ? (
         <div className="mx-auto max-w-md py-16 text-center">
           <p className="text-muted-foreground">Something went wrong while loading your events.</p>

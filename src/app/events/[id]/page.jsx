@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { EventDetailsSkeleton } from "@/components/skeletons";
 import { useAuth } from "@/components/auth-provider";
 import { api } from "@/lib/api";
 import { formatDate } from "@/lib/format";
@@ -127,7 +128,7 @@ export default function EventDetailsPage() {
           </p>
         </div>
       ) : !event ? (
-        <p className="text-muted-foreground py-16 text-center text-sm">Loading event...</p>
+        <EventDetailsSkeleton />
       ) : (
         <article className="bg-card mt-6 overflow-hidden rounded-2xl border shadow-sm">
           <div className="grid md:grid-cols-2">

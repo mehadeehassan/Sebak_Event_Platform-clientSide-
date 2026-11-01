@@ -5,6 +5,7 @@ import { CalendarSearch, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import EventCard from "@/components/event-card";
 import EventPageHeader from "@/components/event-page-header";
+import { EventGridSkeleton } from "@/components/skeletons";
 import { Button } from "@/components/ui/button";
 import { api } from "@/lib/api";
 import { startOfToday } from "@/lib/validate";
@@ -51,7 +52,7 @@ export default function UpcomingEventsPage() {
       />
 
       {loading ? (
-        <LoadingState />
+        <EventGridSkeleton count={6} />
       ) : failed ? (
         <ErrorState />
       ) : upcoming.length === 0 ? (
@@ -64,12 +65,6 @@ export default function UpcomingEventsPage() {
         </div>
       )}
     </section>
-  );
-}
-
-function LoadingState() {
-  return (
-    <p className="text-muted-foreground py-16 text-center text-sm">Loading events...</p>
   );
 }
 
