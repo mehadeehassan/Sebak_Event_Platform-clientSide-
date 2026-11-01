@@ -1,0 +1,48 @@
+/* Small validation helpers reused by the auth and event forms. */
+
+export const EVENT_TYPES = [
+  "Cleanup",
+  "Plantation",
+  "Donation",
+  "Food Distribution",
+  "Clothes Distribution",
+  "Blanket Distribution",
+  "Blood Donation",
+  "Education Program",
+  "Health Camp",
+  "Community Awareness",
+];
+
+export function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value).trim());
+}
+
+/* The password must have an uppercase letter, a lowercase letter and 6+ characters. */
+export function isValidPassword(value) {
+  const password = String(value ?? "");
+  return (
+    password.length >= 6 && /[A-Z]/.test(password) && /[a-z]/.test(password)
+  );
+}
+
+export function isValidUrl(value) {
+  try {
+    const url = new URL(String(value).trim());
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+/* Event dates must be in the future (today does not count as future). */
+export function isFutureDate(value) {
+  if (!value) return false;
+  const date = new Date(value);
+  return date.getTime() > startOfToday().getTime();
+}
+
+export function startOfToday() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+}
