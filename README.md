@@ -29,7 +29,7 @@ distributions, tree plantations, street cleanups and more.
 
 - **Next.js (App Router)** with JavaScript and Tailwind CSS
 - **Custom UI components** (button, card, dialog, dropdown menu, select, skeleton…) styled like shadcn/ui
-- **BetterAuth client** — email/password + Google social login, JWT issued by the jwt plugin
+- **BetterAuth inside this app** — email/password + Google social login, a session cookie on `/api/auth` and a JWT from the jwt plugin (also served at `/api/auth/jwks` for the API server to verify)
 - **Axios interceptor** — attaches the JWT to every protected API request and clears an expired session
 - **Sonner** toasts + **SweetAlert2** confirmations
 - **Express + MongoDB backend** lives in a separate server repository
@@ -42,10 +42,16 @@ distributions, tree plantations, street cleanups and more.
    npm install
    ```
 
-2. Copy `.env.example` to `.env.local` and point it at the backend:
+2. Copy `.env.example` to `.env.local` and fill in your values:
 
    ```bash
-   NEXT_PUBLIC_API_URL=http://localhost:5000
+   NEXT_PUBLIC_API_URL=http://localhost:5000   # express api for events/joins
+   DB_NAME=sebak                               # auth database name
+   MONGODB_URI=...                             # same db the api server uses
+   BETTER_AUTH_SECRET=...                      # node -e "…" random string
+   BETTER_AUTH_URL=http://localhost:3000
+   GOOGLE_CLIENT_ID=...                        # redirect: /api/auth/callback/google
+   GOOGLE_CLIENT_SECRET=...
    ```
 
 3. Run the development server:
@@ -61,6 +67,7 @@ distributions, tree plantations, street cleanups and more.
 ```
 src/
   app/              # routes (home, login, register, events…)
+  app/api/auth/     # BetterAuth handler (sign-in, get-session, token, jwks)
   components/       # navbar, footer, sections, forms, ui primitives
-  lib/              # api client, auth helpers, validation, formatting
+  lib/              # auth config, api client, validation, formatting
 ```
