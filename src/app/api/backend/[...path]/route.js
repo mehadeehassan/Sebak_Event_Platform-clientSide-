@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAuth } from "@/lib/auth";
 
 const API_BASE = process.env.BACKEND_API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 const API_TOKEN_COOKIE = "sebak_api_token";
@@ -12,6 +12,7 @@ const BETTER_AUTH_SESSION_COOKIES = [
 ];
 
 async function issueApiToken(request) {
+  const auth = await getAuth();
   const result = await auth.api.getToken({ headers: request.headers });
   return result?.token || null;
 }

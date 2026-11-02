@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAuth } from "@/lib/auth";
 
 const API_TOKEN_COOKIE = "sebak_api_token";
 const API_TOKEN_MAX_AGE = 15 * 60;
 
 export async function POST(request) {
   try {
+    const auth = await getAuth();
     const { token } = await auth.api.getToken({ headers: request.headers });
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
