@@ -9,7 +9,7 @@ export default function EventCard({ event }) {
     <Link
       href={`/events/${event._id}`}
       aria-label={`View event: ${event.title}`}
-      className="group bg-card hover:border-primary/40 block h-full overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
+      className="group bg-card hover:border-primary/40 flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-muted">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -28,7 +28,7 @@ export default function EventCard({ event }) {
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="font-heading text-muted-foreground group-hover:text-foreground line-clamp-2 text-lg font-semibold tracking-tight transition-colors">
+        <h3 className="font-heading text-foreground line-clamp-2 text-lg font-semibold tracking-tight">
           {event.title}
         </h3>
 
@@ -43,7 +43,7 @@ export default function EventCard({ event }) {
           </span>
         </div>
 
-        <div className="border-border mt-4 flex border-t pt-4">
+        <div className="border-border mt-auto flex border-t pt-4">
           <span className="bg-primary text-primary-foreground group-hover:bg-primary/90 flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-2 text-center text-sm font-medium transition-colors duration-150">
             View Event
             <ArrowRight className="transition-transform duration-150 group-hover:translate-x-0.5" />

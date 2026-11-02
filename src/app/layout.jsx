@@ -25,7 +25,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${bricolage.variable} font-sans antialiased`}>
+      <body
+        suppressHydrationWarning
+        className={`${inter.variable} ${bricolage.variable} font-sans antialiased`}
+      >
         <Providers>
           <div className="flex min-h-dvh flex-col">
             <Navbar />

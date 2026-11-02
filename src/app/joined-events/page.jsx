@@ -56,7 +56,7 @@ export default function JoinedEventsPage() {
   const dataLoading = (loading || joins === null) && !failed;
 
   return (
-    <section className="container-wide py-12 md:py-16">
+    <section className="container-wide py-8 sm:py-10 md:py-16">
       <EventPageHeader
         title="Joined Events"
         description="Events you signed up for as a volunteer, sorted by event date."
@@ -104,9 +104,9 @@ export default function JoinedEventsPage() {
               <Link
                 key={join._id || `${eventId}-${index}`}
                 href={`/events/${eventId}`}
-                className="group bg-card hover:border-primary/40 flex items-center gap-4 overflow-hidden rounded-xl border p-3 shadow-sm transition-all hover:shadow-md"
+                className="group bg-card hover:border-primary/40 flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border p-3 shadow-sm transition-all hover:shadow-md sm:gap-4"
               >
-                <div className="relative size-20 shrink-0 overflow-hidden rounded-lg bg-muted sm:size-24">
+                <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-muted sm:size-24">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={thumbnail}
@@ -124,7 +124,7 @@ export default function JoinedEventsPage() {
                       </Badge>
                     ) : null}
                   </div>
-                  <h3 className="font-heading mt-1.5 line-clamp-1 text-base font-semibold tracking-tight">
+                  <h3 className="font-heading mt-1.5 line-clamp-2 text-sm font-semibold tracking-tight sm:text-base">
                     {title}
                   </h3>
                   <p className="text-muted-foreground mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm">
@@ -135,7 +135,7 @@ export default function JoinedEventsPage() {
                     {location ? (
                       <span className="inline-flex items-center gap-1.5">
                         <MapPin className="text-primary size-3.5" />
-                        <span className="truncate">{location}</span>
+                        <span className="min-w-0 truncate">{location}</span>
                       </span>
                     ) : null}
                   </p>

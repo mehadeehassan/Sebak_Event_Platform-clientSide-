@@ -69,12 +69,12 @@ export default function EventForm({ mode = "create", initial, submitting, onSubm
   const showPreview = isValidUrl(values.thumbnail) && !previewBroken;
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="space-y-2">
         <Label htmlFor="event-title">Event title</Label>
         <Input
           id="event-title"
-          placeholder="Winter Clothes Distribution — Mirpur 10"
+          placeholder="Winter Clothes Distribution — Bangladesh"
           value={values.title}
           onChange={setField("title")}
           aria-invalid={Boolean(errors.title)}
@@ -122,7 +122,7 @@ export default function EventForm({ mode = "create", initial, submitting, onSubm
           <Label htmlFor="event-location">Location</Label>
           <Input
             id="event-location"
-            placeholder="Mohammadpur, Dhaka"
+            placeholder="Dhaka, Bangladesh"
             value={values.location}
             onChange={setField("location")}
             aria-invalid={Boolean(errors.location)}

@@ -109,7 +109,7 @@ export default function ManageEventsPage() {
   }
 
   return (
-    <section className="container-wide py-12 md:py-16">
+    <section className="container-wide py-8 sm:py-10 md:py-16">
       <EventPageHeader
         title="Manage Events"
         description="Every event created by you, in one place. Update details or remove an event that is no longer happening."
@@ -145,10 +145,10 @@ export default function ManageEventsPage() {
           {(events || []).map((event) => (
             <article
               key={event._id}
-              className="bg-card hover:border-primary/40 flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md lg:flex-row"
+              className="bg-card hover:border-primary/40 flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
             >
-              <div className="bg-muted relative flex">
-                <div className="hidden w-56 shrink-0 overflow-hidden sm:block">
+              <div className="bg-muted relative flex w-full min-w-0 flex-1 flex-col sm:flex-row">
+                <div className="h-40 w-full shrink-0 overflow-hidden sm:h-auto sm:w-56 lg:w-72">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={event.thumbnail}

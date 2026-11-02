@@ -40,7 +40,7 @@ export default function CreateEventPage() {
   }
 
   return (
-    <section className="container-wide py-12 md:py-16">
+    <section className="container-wide py-8 sm:py-10 md:py-16">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8 text-center">
           <span className="bg-primary/10 text-primary mx-auto mb-3 inline-flex size-12 items-center justify-center rounded-2xl">
@@ -59,7 +59,7 @@ export default function CreateEventPage() {
             <CardTitle className="text-xl">Event details</CardTitle>
             <CardDescription>All fields are required.</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pb-8">
             {loading || !user ? (
               <div className="space-y-4 py-4">
                 <Skeleton className="h-9 w-full" />
@@ -72,7 +72,12 @@ export default function CreateEventPage() {
                 <Skeleton className="h-9 w-full" />
               </div>
             ) : (
-              <EventForm mode="create" submitting={submitting} onSubmit={handleCreate} />
+              <EventForm
+                mode="create"
+                submitting={submitting}
+                onSubmit={handleCreate}
+                onCancel={() => router.push("/upcoming-events")}
+              />
             )}
           </CardContent>
         </Card>

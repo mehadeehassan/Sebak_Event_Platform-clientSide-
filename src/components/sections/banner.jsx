@@ -23,7 +23,7 @@ export default function Banner() {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-teal-950/95 via-teal-900/85 to-teal-900/25" />
 
-      <div className="container-wide py-20 md:py-28 lg:py-32">
+      <div className="container-wide py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white uppercase backdrop-blur">
             <HeartHandshake className="size-3.5" />
@@ -60,14 +60,14 @@ export default function Banner() {
             </Button>
           </div>
 
-          <div className="mt-12 grid max-w-md grid-cols-3 gap-4 text-white">
+          <div className="mt-10 grid max-w-md grid-cols-3 gap-2 text-white sm:mt-12 sm:gap-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-white/15 bg-white/10 p-4 text-center backdrop-blur"
+                className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-center backdrop-blur sm:p-4"
               >
-                <p className="font-heading text-2xl font-bold">{stat.value}</p>
-                <p className="mt-1 text-[11px] font-medium tracking-wide text-teal-100/80 uppercase">
+                <p className="font-heading text-lg font-bold sm:text-2xl">{stat.value}</p>
+                <p className="mt-1 text-[9px] font-medium tracking-wide text-teal-100/80 uppercase sm:text-[11px]">
                   {stat.label}
                 </p>
               </div>

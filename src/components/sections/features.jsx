@@ -43,7 +43,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 sm:py-16 md:py-24">
       <div className="container-wide">
         <SectionHeading
           eyebrow="Why Sebak"
@@ -51,10 +51,10 @@ export default function Features() {
           description="From planning a clothes drive to tracking who has joined, Sebak gives back the hours you would spend on paperwork."
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {features.map((feature) => (
             <Card key={feature.title} className="transition-shadow hover:shadow-md">
-              <CardContent>
+              <CardContent className="flex-1 p-5 sm:p-6">
                 <span className="bg-primary/10 text-primary inline-flex size-11 items-center justify-center rounded-lg">
                   <feature.icon className="size-5" />
                 </span>

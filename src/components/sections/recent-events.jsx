@@ -43,7 +43,7 @@ export default function RecentEvents() {
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 sm:py-16 md:py-24">
       <div className="container-wide">
         <SectionHeading
           eyebrow="Come along"
@@ -72,7 +72,7 @@ export default function RecentEvents() {
           </div>
         ) : (
           <>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {upcoming.map((event) => (
                 <EventCard key={event._id} event={event} />
               ))}

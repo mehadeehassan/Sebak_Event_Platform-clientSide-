@@ -22,9 +22,9 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 sm:py-16 md:py-24">
       <div className="container-wide">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-teal-600 to-teal-800 px-6 py-12 text-center md:px-12 md:py-16">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-600 to-teal-800 px-4 py-10 text-center sm:rounded-3xl sm:px-6 md:px-12 md:py-16">
           <span
             aria-hidden="true"
             className="absolute -top-12 -left-12 size-48 rounded-full bg-white/10 blur-3xl"

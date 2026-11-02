@@ -38,7 +38,7 @@ const GALLERY_IMAGES = [
 
 export default function Gallery() {
   return (
-    <section className="bg-secondary/40 py-16 md:py-24 dark:bg-white/5">
+    <section className="bg-secondary/40 py-12 sm:py-16 md:py-24 dark:bg-white/5">
       <div className="container-wide">
         <SectionHeading
           eyebrow="Gallery"
@@ -46,7 +46,7 @@ export default function Gallery() {
           description="Snapshots from community drives, cleanups and plantations across the country."
         />
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
           {GALLERY_IMAGES.map((image) => (
             <figure key={image.alt} className="group relative overflow-hidden rounded-xl bg-muted">
               {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -112,7 +112,7 @@ export default function EventDetailsPage() {
   }
 
   return (
-    <section className="container-wide py-10 md:py-14">
+    <section className="container-wide py-8 sm:py-10 md:py-14">
       <Button variant="ghost" size="sm" asChild>
         <Link href="/upcoming-events">
           <ArrowLeft />
@@ -132,7 +132,7 @@ export default function EventDetailsPage() {
       ) : (
         <article className="bg-card mt-6 overflow-hidden rounded-2xl border shadow-sm">
           <div className="grid md:grid-cols-2">
-            <div className="relative min-h-64 overflow-hidden bg-muted md:min-h-[26rem]">
+            <div className="relative aspect-[4/3] overflow-hidden bg-muted md:aspect-auto md:min-h-[26rem]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={event.thumbnail}
@@ -147,7 +147,7 @@ export default function EventDetailsPage() {
               </Badge>
             </div>
 
-            <div className="flex flex-col gap-4 p-6 md:p-8">
+            <div className="flex flex-col gap-4 p-5 sm:p-6 md:p-8">
               <div>
                 <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
                   {event.title}
