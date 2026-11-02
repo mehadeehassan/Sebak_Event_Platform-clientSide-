@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { authClient, mapAuthError, safeRedirect } from "@/lib/auth";
+import { authClient, mapAuthError, resetStoredAuth, safeRedirect } from "@/lib/auth";
 import { useAuth } from "@/components/auth-provider";
 import { isValidEmail } from "@/lib/validate";
 import AuthShell from "@/components/auth-shell";
@@ -78,7 +78,9 @@ function LoginInner() {
       });
       if (error) throw error;
 
-      /* Pulls the user into React state and saves the JWT for API calls. */
+      /* The cookie now belongs to this user only — any stored info from an
+         earlier session must go before the session is read again. */
+      resetStoredAuth();
       const user = await refreshCurrentUser();
       if (!user) throw new Error("Could not create a session. Try again.");
 

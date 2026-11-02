@@ -9,7 +9,7 @@ import { Eye, EyeOff, LoaderCircle, Lock, Mail, SquarePen, ImagePlus } from "luc
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient, mapAuthError } from "@/lib/auth";
+import { authClient, mapAuthError, resetStoredAuth } from "@/lib/auth";
 import { useAuth } from "@/components/auth-provider";
 import { isValidEmail, isValidPassword, isValidUrl } from "@/lib/validate";
 import AuthShell from "@/components/auth-shell";
@@ -62,7 +62,9 @@ function RegisterInner() {
       });
       if (error) throw error;
 
-      /* Registration signs the user in right away. */
+      /* Registration signs the user in right away — stored info from an
+         earlier session must not leak into the freshly created one. */
+      resetStoredAuth();
       const user = await refreshCurrentUser();
       if (user) {
         await Swal.fire({
