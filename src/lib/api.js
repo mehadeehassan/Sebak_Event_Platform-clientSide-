@@ -3,7 +3,9 @@ import { toast } from "sonner";
 import { API_BASE, TOKEN_KEY, USER_KEY } from "./auth";
 
 export const api = axios.create({
-  baseURL: `${API_BASE}/api`,
+  /* The express server keeps its routes at the root, exactly like the
+     course demo — /events, /joins. */
+  baseURL: API_BASE,
 });
 
 /* Every request to a protected endpoint carries the stored JWT. */
