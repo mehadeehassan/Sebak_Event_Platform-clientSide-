@@ -11,28 +11,28 @@ const GALLERY_IMAGES = [
     alt: "Food distribution day",
   },
   {
-    src: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?q=80&w=800&auto=format&fit=crop",
-    alt: "Neighbourhood street cleanup",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1466921583968-f07aa80c526e?q=80&w=800&auto=format&fit=crop",
-    alt: "Volunteer team huddle",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1471560090527-d1af5e4e6eb6?q=80&w=800&auto=format&fit=crop",
-    alt: "Winter clothes drive",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1594708767771-a7502209ff51?q=80&w=800&auto=format&fit=crop",
-    alt: "Beach cleanup campaign",
+    src: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=800&auto=format&fit=crop",
+    alt: "Donation drive",
   },
   {
     src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop",
-    alt: "Donation handover ceremony",
+    alt: "Children at a community program",
   },
   {
-    src: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop",
-    alt: "Community planning meeting",
+    src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop",
+    alt: "Volunteers planning together",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop",
+    alt: "Community team meetup",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800&auto=format&fit=crop",
+    alt: "Helping hands",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop",
+    alt: "Food bank supplies",
   },
 ];
 
