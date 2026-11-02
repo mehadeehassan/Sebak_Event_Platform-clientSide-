@@ -42,13 +42,20 @@ export default function Newsletter() {
             once a month.
           </p>
 
-          <form onSubmit={handleSubmit} className="relative mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+          <form
+            onSubmit={handleSubmit}
+            data-lpignore="true"
+            data-form-type="other"
+            autoComplete="off"
+            className="relative mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+          >
             <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               aria-label="Email address for the newsletter"
+              data-lpignore="true"
               className="h-11 flex-1 border-white/30 bg-white/15 text-white placeholder:text-teal-100/70 focus-visible:border-white focus-visible:ring-white/30"
             />
             <Button type="submit" size="lg" className="bg-white text-teal-900 shadow hover:bg-teal-50 hover:text-teal-950">

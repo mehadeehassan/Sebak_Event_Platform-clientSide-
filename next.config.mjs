@@ -4,6 +4,15 @@ const nextConfig = {
      prerender rules of the cache components mode were too heavy here. */
   cacheComponents: false,
   reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+    ],
+  },
   turbopack: {
     rules: {
       "*.css": {

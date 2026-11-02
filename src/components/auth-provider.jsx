@@ -1,53 +1,48 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { authClient } from "@/lib/auth-client";
 import {
-  authClient,
+  clearJwtCookie,
   fetchSession,
-  getStoredToken,
-  persistAuth,
+  persistUser,
   readStoredUser,
-  requestJwt,
+  refreshJwtCookie,
   resetStoredAuth,
-} from "@/lib/auth";
+} from "@/lib/auth-session";
 
 const AuthContext = createContext(null);
 
-/* Keeps the logged-in user in React state and mirrors it in localStorage so a
-   page reload never throws the visitor back to the login page. */
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  /* Counts every refreshCurrentUser call; responses from older calls are
-     dropped so a slow restore can never overwrite a newer login. */
+
   const refreshEpoch = useRef(0);
 
-  /* Restores (or discovers) the current session without forcing a login redirect:
-     - stored JWT + user info are used first (fast path after a reload),
-     - otherwise the BetterAuth session cookie is checked, which also picks up
-       visitors that just came back from Google sign-in. */
   const refreshCurrentUser = useCallback(async ({ notify = false } = {}) => {
     const callEpoch = ++refreshEpoch.current;
     const storedUser = readStoredUser();
-    const storedToken = getStoredToken();
-
-    if (storedUser && storedToken) {
-      setUser(storedUser);
-      return storedUser;
-    }
+    if (storedUser) setUser(storedUser);
 
     const session = await fetchSession();
     if (callEpoch !== refreshEpoch.current) return null;
     if (session?.user) {
-      const token = storedToken || (await requestJwt());
+      const cookieReady = await refreshJwtCookie();
       if (callEpoch !== refreshEpoch.current) return null;
-      persistAuth(session.user, token);
+      if (!cookieReady) {
+        resetStoredAuth();
+        setUser(null);
+        return null;
+      }
+      persistUser(session.user);
       setUser(session.user);
       if (notify) toast.success(`Welcome, ${session.user.name || "friend"}!`);
       return session.user;
     }
 
+    resetStoredAuth();
     setUser(null);
     return null;
   }, []);
@@ -56,9 +51,13 @@ export function AuthProvider({ children }) {
     refreshCurrentUser().finally(() => setLoading(false));
   }, [refreshCurrentUser]);
 
-  /* Synced with the axios interceptor: remove React state once the token dies. */
+
   useEffect(() => {
-    const onAuthExpired = () => setUser(null);
+    const onAuthExpired = () => {
+      resetStoredAuth();
+      void clearJwtCookie();
+      setUser(null);
+    };
     window.addEventListener("sebak:auth-expired", onAuthExpired);
     return () => window.removeEventListener("sebak:auth-expired", onAuthExpired);
   }, []);
@@ -67,8 +66,9 @@ export function AuthProvider({ children }) {
     try {
       await authClient.signOut();
     } catch {
-      /* The local session is cleared below either way. */
+
     }
+    await clearJwtCookie();
     resetStoredAuth();
     setUser(null);
     toast.success("Logged out successfully");

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
 import { LoaderCircle, RotateCcw, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import { Select } from "@/components/ui/select";
 import { EVENT_TYPES, isFutureDate, isValidUrl } from "@/lib/validate";
 import { tomorrowInputDate } from "@/lib/format";
 
-/* Same form powers Create Event and Update Event so the rules stay identical. */
+
 export default function EventForm({ mode = "create", initial, submitting, onSubmit, onCancel }) {
   const [values, setValues] = useState(() => ({
     title: initial?.title || "",
@@ -32,7 +33,7 @@ export default function EventForm({ mode = "create", initial, submitting, onSubm
     };
   }
 
-  /* Everything about an event is required, and the date must be in the future. */
+
   function validate() {
     const next = {};
     if (values.title.trim().length < 5) next.title = "Title must be at least 5 characters.";
@@ -145,13 +146,15 @@ export default function EventForm({ mode = "create", initial, submitting, onSubm
           <p className="text-destructive text-xs">{errors.thumbnail}</p>
         ) : null}
         {showPreview ? (
-          <div className="bg-muted overflow-hidden rounded-lg border">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="bg-muted relative h-32 overflow-hidden rounded-lg border">
+            <Image
               src={values.thumbnail.trim()}
               alt="Preview of the event thumbnail"
               onError={() => setPreviewBroken(true)}
-              className="h-32 w-full object-cover"
+              fill
+              unoptimized
+              sizes="100vw"
+              className="object-cover"
             />
           </div>
         ) : null}

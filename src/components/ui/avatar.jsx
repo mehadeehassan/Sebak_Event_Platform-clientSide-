@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /* Profile picture with a initials fallback when the image URL is missing or broken. */
@@ -31,12 +33,14 @@ export function Avatar({ src, name = "", className }) {
       )}
     >
       {showImage ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={src}
           alt={name || "User avatar"}
           onError={() => setBroken(true)}
-          className="size-full object-cover"
+          fill
+          unoptimized
+          sizes="36px"
+          className="object-cover"
         />
       ) : (
         <span

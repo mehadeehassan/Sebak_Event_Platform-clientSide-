@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { CalendarDays, CalendarCheck, MapPin } from "lucide-react";
@@ -12,7 +13,7 @@ import { useRequireAuth } from "@/lib/use-require-auth";
 import { api } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
-/* Private page: shows every event the logged-in user joined, ordered by date. */
+
 export default function JoinedEventsPage() {
   const { user, loading } = useRequireAuth();
   const [joins, setJoins] = useState(null);
@@ -46,7 +47,7 @@ export default function JoinedEventsPage() {
         (typeof join.eventId === "object" ? join.eventId : null) ||
         {},
     }))
-    /* Keep the soonest events on top like a real volunteer calendar. */
+
     .sort(
       (a, b) =>
         new Date(a.event?.date || a.eventDate || 0).getTime() -
@@ -90,8 +91,7 @@ export default function JoinedEventsPage() {
       ) : (
         <div className="grid gap-5 lg:grid-cols-2">
           {rows.map((join, index) => {
-            /* Some stacked data lives on the join record, some comes back
-               populated as a nested event object — accept both shapes. */
+
             const eventId =
               typeof join.eventId === "object" ? join.eventId?._id || join.event?._id : join.eventId;
             const title = join.event?.title || join.eventTitle || "Community event";
@@ -107,12 +107,13 @@ export default function JoinedEventsPage() {
                 className="group bg-card hover:border-primary/40 flex min-w-0 items-center gap-3 overflow-hidden rounded-xl border p-3 shadow-sm transition-all hover:shadow-md sm:gap-4"
               >
                 <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-muted sm:size-24">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={thumbnail}
                     alt={`Thumbnail of the event ${title}`}
-                    loading="lazy"
-                    className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 640px) 64px, 96px"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 

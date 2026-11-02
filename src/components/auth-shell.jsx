@@ -1,7 +1,6 @@
 import { HeartHandshake } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-/* Shared centered card layout used by the login and register pages. */
 export default function AuthShell({ title, description, children }) {
   return (
     <div className="container-wide flex min-h-[calc(100dvh-8rem)] items-center justify-center py-12">

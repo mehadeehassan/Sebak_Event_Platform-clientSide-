@@ -11,14 +11,12 @@ import { api } from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-/* Private page: any logged-in user can publish an event for the community. */
 export default function CreateEventPage() {
   const router = useRouter();
   const { user, loading } = useRequireAuth();
   const [submitting, setSubmitting] = useState(false);
 
-  /* The verified JWT tells the server who created this event, so the owner
-     can later update or delete it from the Manage Events page. */
+
   async function handleCreate(payload) {
     setSubmitting(true);
     try {

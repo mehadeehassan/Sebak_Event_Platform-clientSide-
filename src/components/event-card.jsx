@@ -1,9 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/format";
 
-/* Single event card reused on the home and upcoming events pages. */
 export default function EventCard({ event }) {
   return (
     <Link
@@ -12,12 +12,13 @@ export default function EventCard({ event }) {
       className="group bg-card hover:border-primary/40 flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={event.thumbnail}
           alt={`Thumbnail of the event ${event.title}`}
-          loading="lazy"
-          className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+          fill
+          unoptimized
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <Badge
           variant="secondary"

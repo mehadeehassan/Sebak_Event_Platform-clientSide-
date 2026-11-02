@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -24,7 +25,7 @@ const publicLinks = [
   { href: "/upcoming-events", label: "Upcoming Events" },
 ];
 
-/* Links from the profile picture dropdown (all private routes). */
+
 const memberLinks = [
   { href: "/create-event", label: "Create Event", icon: CalendarPlus },
   { href: "/manage-events", label: "Manage Events", icon: LayoutList },
@@ -121,7 +122,7 @@ export default function Navbar() {
   const { user, isLoggedIn, loading, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  /* Close the mobile drawer whenever the route changes. */
+
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);

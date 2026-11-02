@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -21,7 +22,7 @@ import { useAuth } from "@/components/auth-provider";
 import { api } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
-/* This page is public: anyone can read the event, but joining needs an account. */
+
 export default function EventDetailsPage() {
   const params = useParams();
   const eventId = params?.id;
@@ -53,7 +54,7 @@ export default function EventDetailsPage() {
     };
   }, [eventId]);
 
-  /* Mark the button as already joined if the session has a matching record. */
+
   useEffect(() => {
     if (!isLoggedIn || !eventId) return;
     let active = true;
@@ -70,7 +71,7 @@ export default function EventDetailsPage() {
         if (matched) setJoined(true);
       })
       .catch(() => {
-        /* A failed check simply leaves the button in its default state. */
+
       });
 
     return () => {
@@ -78,7 +79,7 @@ export default function EventDetailsPage() {
     };
   }, [isLoggedIn, eventId]);
 
-  /* Viewing details is open to everyone, joining needs a login. */
+
   async function handleJoin() {
     if (!isLoggedIn) {
       toast.info("Please log in to join this event.");
@@ -103,7 +104,7 @@ export default function EventDetailsPage() {
         setJoined(true);
         toast.info("You already joined this event.");
       } else if (status !== 401) {
-        /* 401 already triggers a session-expired toast in the axios layer. */
+
         toast.error("Could not join this event. Please try again.");
       }
     } finally {
@@ -133,11 +134,13 @@ export default function EventDetailsPage() {
         <article className="bg-card mt-6 overflow-hidden rounded-2xl border shadow-sm">
           <div className="grid md:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden bg-muted md:aspect-auto md:min-h-[26rem]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={event.thumbnail}
                 alt={`Thumbnail of the event ${event.title}`}
-                className="absolute inset-0 size-full object-cover"
+                fill
+                unoptimized
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
               <Badge
                 variant="secondary"

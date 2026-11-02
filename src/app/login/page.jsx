@@ -9,7 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { authClient, mapAuthError, resetStoredAuth, safeRedirect } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
+import { resetStoredAuth } from "@/lib/auth-session";
+import { mapAuthError, safeRedirect } from "@/lib/auth-utils";
 import { useAuth } from "@/components/auth-provider";
 import { isValidEmail } from "@/lib/validate";
 import AuthShell from "@/components/auth-shell";
@@ -78,8 +80,6 @@ function LoginInner() {
       });
       if (error) throw error;
 
-      /* The cookie now belongs to this user only — any stored info from an
-         earlier session must go before the session is read again. */
       resetStoredAuth();
       const user = await refreshCurrentUser();
       if (!user) throw new Error("Could not create a session. Try again.");
@@ -104,7 +104,6 @@ function LoginInner() {
         toast.error(mapAuthError(error));
         setGoogleLoading(false);
       }
-      /* The browser is redirected to Google by the BetterAuth client. */
     } catch {
       toast.error("Google login is temporarily unavailable. Try again.");
       setGoogleLoading(false);

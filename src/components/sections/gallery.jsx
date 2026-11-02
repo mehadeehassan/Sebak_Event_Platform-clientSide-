@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionHeading from "@/components/section-heading";
 
 /* Static snapshots of community service events. */
@@ -48,13 +49,13 @@ export default function Gallery() {
 
         <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
           {GALLERY_IMAGES.map((image) => (
-            <figure key={image.alt} className="group relative overflow-hidden rounded-xl bg-muted">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <figure key={image.alt} className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
+              <Image
                 src={image.src}
                 alt={image.alt}
-                loading="lazy"
-                className="aspect-[4/3] h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-3 pt-8 text-xs font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 {image.alt}

@@ -45,8 +45,6 @@ function UpcomingEventsContent() {
 
   const loading = events === null && !failed;
 
-  /* The database can also filter, but the browser never lets an expired
-     event slip through even if the API response changes later. */
   const upcoming = (events || [])
     .filter((event) => new Date(event.date).getTime() >= startOfToday().getTime())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());

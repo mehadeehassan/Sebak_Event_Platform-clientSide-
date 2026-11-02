@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
@@ -28,7 +29,6 @@ import { useRequireAuth } from "@/lib/use-require-auth";
 import { api } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 
-/* Private page: full control over the events the logged-in user created. */
 export default function ManageEventsPage() {
   const { user, loading } = useRequireAuth();
   const [events, setEvents] = useState(null);
@@ -60,7 +60,6 @@ export default function ManageEventsPage() {
 
   const dataLoading = (loading || events === null) && !failed;
 
-  /* Validation lives inside the shared EventForm, then we patch the changes. */
   async function handleUpdate(payload) {
     if (!editing) return;
     setUpdateSubmitting(true);
@@ -80,7 +79,6 @@ export default function ManageEventsPage() {
     }
   }
 
-  /* A SweetAlert confirmation before the event is deleted for good. */
   async function handleDelete(event) {
     const confirm = await Swal.fire({
       title: "Delete this event?",
@@ -148,13 +146,14 @@ export default function ManageEventsPage() {
               className="bg-card hover:border-primary/40 flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
             >
               <div className="bg-muted relative flex w-full min-w-0 flex-1 flex-col sm:flex-row">
-                <div className="h-40 w-full shrink-0 overflow-hidden sm:h-auto sm:w-56 lg:w-72">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative h-40 w-full shrink-0 overflow-hidden sm:h-auto sm:w-56 lg:w-72">
+                  <Image
                     src={event.thumbnail}
                     alt={`Thumbnail of the event ${event.title}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
+                    fill
+                    unoptimized
+                    sizes="(max-width: 640px) 100vw, 288px"
+                    className="object-cover"
                   />
                 </div>
 

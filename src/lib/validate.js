@@ -1,4 +1,4 @@
-/* Small validation helpers reused by the auth and event forms. */
+
 
 export const EVENT_TYPES = [
   "Cleanup",

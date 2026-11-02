@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CalendarPlus, HeartHandshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,11 +16,13 @@ const stats = [
 export default function Banner() {
   return (
     <section className="relative isolate overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={HERO_IMAGE}
         alt="Volunteers packing relief supplies together"
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        fill
+        preload
+        sizes="100vw"
+        className="absolute inset-0 -z-10 object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-teal-950/95 via-teal-900/85 to-teal-900/25" />
 

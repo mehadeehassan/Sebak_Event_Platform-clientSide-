@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -9,7 +10,9 @@ import { Eye, EyeOff, LoaderCircle, Lock, Mail, SquarePen, ImagePlus } from "luc
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient, mapAuthError, resetStoredAuth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
+import { resetStoredAuth } from "@/lib/auth-session";
+import { mapAuthError } from "@/lib/auth-utils";
 import { useAuth } from "@/components/auth-provider";
 import { isValidEmail, isValidPassword, isValidUrl } from "@/lib/validate";
 import AuthShell from "@/components/auth-shell";
@@ -30,7 +33,6 @@ function RegisterInner() {
     };
   }
 
-  /* Password rule: uppercase + lowercase + at least 6 characters. */
   function validate() {
     const next = {};
     if (form.name.trim().length < 3) next.name = "Name must be at least 3 characters.";
@@ -47,7 +49,6 @@ function RegisterInner() {
   async function handleSubmit(event) {
     event.preventDefault();
     if (!validate()) {
-      /* A toast duplicates the inline hint so nothing is missed on mobile. */
       toast.error("Please fix the highlighted fields before continuing.");
       return;
     }
@@ -62,8 +63,6 @@ function RegisterInner() {
       });
       if (error) throw error;
 
-      /* Registration signs the user in right away — stored info from an
-         earlier session must not leak into the freshly created one. */
       resetStoredAuth();
       const user = await refreshCurrentUser();
       if (user) {
@@ -197,9 +196,15 @@ function RegisterInner() {
 
 function PhotoPreview({ url }) {
   return (
-    <div className="bg-muted overflow-hidden rounded-lg border">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={url} alt="Preview of your avatar URL" className="h-28 w-full object-cover" />
+    <div className="bg-muted relative h-28 overflow-hidden rounded-lg border">
+      <Image
+        src={url}
+        alt="Preview of your avatar URL"
+        fill
+        unoptimized
+        sizes="100vw"
+        className="object-cover"
+      />
     </div>
   );
 }
