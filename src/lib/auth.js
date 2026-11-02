@@ -1,18 +1,20 @@
 /* BetterAuth client + helpers that keep the JWT session alive in the browser. */
 import { createAuthClient } from "better-auth/client";
 
+/* The REST api (events, joins) runs on the express server... */
 export const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+/* ...while BetterAuth lives on this very app, served itself at /api/auth. */
+export const AUTH_BASE = typeof window === "undefined" ? "" : window.location.origin;
+
 export const TOKEN_KEY = "sebak_token";
 export const USER_KEY = "sebak_user";
 
-export const authClient = createAuthClient({
-  baseURL: API_BASE,
-});
+export const authClient = createAuthClient();
 
-/* Reads the BetterAuth session cookie on the API server. Returns { session, user }. */
+/* Reads the BetterAuth session cookie of this app. Returns { session, user }. */
 export async function fetchSession() {
   try {
-    const res = await fetch(`${API_BASE}/api/auth/get-session`, {
+    const res = await fetch(`${AUTH_BASE}/api/auth/get-session`, {
       method: "GET",
       credentials: "include",
     });
@@ -27,7 +29,7 @@ export async function fetchSession() {
 /* Asks the BetterAuth jwt plugin for the JWT tied to the current session. */
 export async function requestJwt() {
   try {
-    const res = await fetch(`${API_BASE}/api/auth/token`, {
+    const res = await fetch(`${AUTH_BASE}/api/auth/token`, {
       method: "GET",
       credentials: "include",
     });
