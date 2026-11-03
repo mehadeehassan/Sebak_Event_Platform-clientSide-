@@ -4,7 +4,7 @@ Sebak is a single-page application where everyday people can create, join and ma
 social service events in their neighbourhood — winter clothes drives, blanket
 distributions, tree plantations, street cleanups and more.
 
-> **Live site:** add your deployed URL here (Vercel → Project → Domains)
+> **Live site:** https://sebak-event-platform-client-side.vercel.app
 
 ## Features
 
@@ -30,7 +30,7 @@ distributions, tree plantations, street cleanups and more.
 - **Next.js (App Router)** with JavaScript and Tailwind CSS
 - **Custom UI components** (button, card, dialog, dropdown menu, select, skeleton…) styled like shadcn/ui
 - **BetterAuth inside this app** — email/password + Google social login, a session cookie on `/api/auth` and a JWT from the jwt plugin (also served at `/api/auth/jwks` for the API server to verify)
-- **Axios interceptor** — attaches the JWT to every protected API request and clears an expired session
+- attaches the JWT to every protected API request and clears an expired session
 - **Sonner** toasts + **SweetAlert2** confirmations
 - **Express + MongoDB backend** lives in a separate server repository
 
