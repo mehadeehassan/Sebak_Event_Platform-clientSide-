@@ -96,7 +96,7 @@ function RegisterInner() {
               <Input
                 id="name"
                 autoComplete="name"
-                placeholder="Your Name"
+placeholder="Your Name"
                 value={form.name}
                 onChange={setField("name")}
                 aria-invalid={Boolean(errors.name)}

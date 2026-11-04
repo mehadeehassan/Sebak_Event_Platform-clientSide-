@@ -12,7 +12,7 @@ const stats = [
   { value: "20+", label: "Communities" },
 ];
 
-/* Company banner of the home page, themed around community service. */
+
 export default function Banner() {
   return (
     <section className="relative isolate overflow-hidden">

@@ -17,7 +17,7 @@ export function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value).trim());
 }
 
-/* The password must have an uppercase letter, a lowercase letter and 6+ characters. */
+
 export function isValidPassword(value) {
   const password = String(value ?? "");
   return (
@@ -34,7 +34,7 @@ export function isValidUrl(value) {
   }
 }
 
-/* Event dates must be in the future (today does not count as future). */
+
 export function isFutureDate(value) {
   if (!value) return false;
   const date = new Date(value);

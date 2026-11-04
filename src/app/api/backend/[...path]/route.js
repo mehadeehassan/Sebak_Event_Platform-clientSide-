@@ -127,7 +127,6 @@ async function handle(request, context) {
   try {
     let upstream = await callBackend(request, url, token, body);
 
-    /* Renew an expired API JWT once, using the Better Auth session cookie. */
     if (upstream.status === 401 && token) {
       const freshToken = await issueApiToken(request).catch(() => null);
       if (freshToken && freshToken !== token) {

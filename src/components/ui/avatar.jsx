@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/* Profile picture with a initials fallback when the image URL is missing or broken. */
+
 export function Avatar({ src, name = "", className }) {
   const [broken, setBroken] = useState(false);
 

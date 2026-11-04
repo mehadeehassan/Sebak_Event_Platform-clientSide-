@@ -1,4 +1,4 @@
-/* Simple brand icons drawn as inline SVG (lucide-react no longer ships brands). */
+
 
 export function XIcon(props) {
   return (

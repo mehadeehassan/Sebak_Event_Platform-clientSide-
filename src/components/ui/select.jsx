@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* Keyboard and screen reader friendly native select, styled to match the inputs. */
+
 function Select({ className, children, ...props }) {
   return (
     <div className="relative w-full" data-slot="select-wrapper">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { api } from "@/lib/api";
 import { EVENT_TYPES, startOfToday } from "@/lib/validate";
 
-/* Only show categories represented by upcoming events returned by the API. */
+
 export default function EventTypeNav({ events: suppliedEvents, activeType = "" }) {
   const [loadedEvents, setLoadedEvents] = useState(null);
   const events = suppliedEvents ?? loadedEvents;

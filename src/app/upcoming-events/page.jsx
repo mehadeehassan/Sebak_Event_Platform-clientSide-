@@ -14,7 +14,7 @@ import { Select } from "@/components/ui/select";
 import { api } from "@/lib/api";
 import { startOfToday } from "@/lib/validate";
 
-/* Public page listing everything that has not happened yet. */
+
 function UpcomingEventsContent() {
   const searchParams = useSearchParams();
   const activeType = searchParams.get("type") || "";

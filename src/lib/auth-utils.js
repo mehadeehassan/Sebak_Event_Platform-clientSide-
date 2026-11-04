@@ -1,4 +1,4 @@
-/* Convert auth provider errors into short messages suitable for a toast. */
+
 export function mapAuthError(error) {
   const message = error?.message || error?.response?.data?.message || "";
 
@@ -10,7 +10,7 @@ export function mapAuthError(error) {
   return "Something went wrong. Please try again.";
 }
 
-/* Keep auth redirects inside this app. */
+
 export function safeRedirect(value, fallback = "/") {
   if (
     typeof value !== "string" ||

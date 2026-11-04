@@ -15,7 +15,7 @@ export async function fetchSession() {
   }
 }
 
-/* Ask the server to mint the API JWT and store it in an HttpOnly cookie. */
+
 export async function refreshJwtCookie() {
   try {
     const response = await fetch("/api/auth/token-cookie", {
@@ -35,7 +35,7 @@ export async function clearJwtCookie() {
       credentials: "same-origin",
     });
   } catch {
-    // Local sign-out should finish even if the server is unavailable.
+
   }
 }
 

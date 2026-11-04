@@ -8,7 +8,7 @@ const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogClose = DialogPrimitive.Close;
 
-/* The .dialog-content class (see globals.css) centers the panel and animates it in. */
+
 function DialogContent({ className, children, showCloseButton = true, ...props }) {
   return (
     <DialogPrimitive.Portal>

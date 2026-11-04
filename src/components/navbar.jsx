@@ -53,7 +53,7 @@ function NavLink({ href, label, onClick, className }) {
   );
 }
 
-/* Login button (guests) or profile picture dropdown (members). */
+
 function AccountArea() {
   const { user, isLoggedIn, loading, logout } = useAuth();
 
@@ -84,7 +84,7 @@ function AccountArea() {
           className="group relative flex items-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <Avatar src={user?.image || user?.photoURL} name={user?.name} className="ring-border size-9 ring-2" />
-          {/* The display name shows up while hovering the profile picture. */}
+
           <span className="pointer-events-none absolute top-full right-0 z-50 mt-2 rounded-md border bg-popover px-2.5 py-1 text-xs font-medium text-popover-foreground opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100">
             {user?.name}
           </span>

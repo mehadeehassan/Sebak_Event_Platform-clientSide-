@@ -7,7 +7,7 @@ import { getDb } from "@/lib/mongodb";
 
 let authPromise;
 
-/** Initialize Better Auth and MongoDB on demand, never while collecting build data. */
+
 export function getAuth() {
   if (!authPromise) {
     authPromise = getDb()

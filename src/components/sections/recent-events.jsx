@@ -11,8 +11,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/lib/api";
 import { startOfToday } from "@/lib/validate";
 
-/* Pulls the 6 soonest upcoming events created by the community.
-   The database applies its limit here; the client kept the section in sync. */
+
 export default function RecentEvents() {
   const [events, setEvents] = useState(null);
   const [failed, setFailed] = useState(false);
