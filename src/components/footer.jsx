@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { HandHeart, Mail, MapPin } from "lucide-react";
 import { FacebookIcon, GithubIcon, XIcon, YoutubeIcon } from "@/components/brand-icons";
 import CurrentYear from "@/components/current-year";
 
@@ -34,7 +34,7 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2.5 rounded-xl bg-white/10 px-3 py-2">
             <span className="flex size-9 items-center justify-center rounded-lg bg-teal-400 text-teal-950">
-              <LogoMark />
+              <HandHeart className="size-5" aria-hidden="true" />
             </span>
             <span className="font-heading text-xl font-bold tracking-tight">Sebak</span>
           </div>
@@ -113,13 +113,5 @@ export default function Footer() {
         </p>
       </div>
     </footer>
-  );
-}
-
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden="true">
-      <path d="M12 21.35a.95.95 0 0 1-.7-.3l-6.3-6.2C2.9 12.75 2 10.9 2 9.2 2 5.9 4.55 3.5 7.75 3.5c1.7 0 3.25.8 4.25 2.05C13 4.3 14.55 3.5 16.25 3.5 19.45 3.5 22 5.9 22 9.2c0 1.7-.9 3.55-3 5.65l-6.3 6.2a.95.95 0 0 1-.7.3z" />
-    </svg>
   );
 }
